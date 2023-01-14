@@ -27,7 +27,7 @@ const Movies = () => {
 
   return (
     <>
-      <SearchBar />
+      <SearchBar search={searchFilmList}/>
     </>
   );
 };
