@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-function SearchBar() {
-  const [searchQuery, setSearchQuery] = useState('');
 
+function SearchBar({ onSubmit }) {
+  const [searchQuery, setSearchQuery] = useState('');
+  
   const handleNameChange = event => {
     setSearchQuery(event.currentTarget.value.toLowerCase());
   };
@@ -11,9 +12,9 @@ function SearchBar() {
     event.preventDefault();
     const query = searchQuery.trim();
     if (query === '') {
-      return toast.error('Рядок пошуку пустий !');
+      return toast.error('Enter something in the search !');
     }
-
+    onSubmit(query);
     setSearchQuery('');
   };
 
@@ -27,8 +28,8 @@ function SearchBar() {
         value={searchQuery}
         onChange={handleNameChange}
       />
-      <button type="submit">
-        <span>Search</span>
+      <button className="button" type="submit">
+        <span className="button_text">Search</span>
       </button>
     </form>
   );
