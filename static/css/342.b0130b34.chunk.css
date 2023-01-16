@@ -1,0 +1,2 @@
+.container{display:grid}.title{font-size:60px;margin:0 auto;padding:30px 15px}.img{border-top-left-radius:15px;border-top-right-radius:15px}.list{grid-gap:35px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));list-style:none;margin:0 auto;max-width:calc(100vw - 35px);padding:0}.link{border:1px solid;border-radius:15px;display:block;max-width:300px;text-decoration:none}.text{text-align:center}
+/*# sourceMappingURL=342.b0130b34.chunk.css.map*/
