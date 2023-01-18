@@ -1,4 +1,5 @@
 import './MovieCard.style.css';
+import { getURL } from '../../servises/api';
 const MovieCard = ({ info }) => {
   const {
     original_title,
@@ -8,12 +9,11 @@ const MovieCard = ({ info }) => {
     vote_average,
     release_date,
   } = info;
-  const baseURL = 'https://image.tmdb.org/t/p/w300';
 
   return (
     <div className="card_container">
       <div>
-        <img src={`${baseURL}${poster_path}`} alt={original_title} />
+        <img src={getURL(poster_path)} alt={original_title} />
       </div>
 
       <div className="details">

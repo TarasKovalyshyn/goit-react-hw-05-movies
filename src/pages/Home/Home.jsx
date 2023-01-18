@@ -1,15 +1,15 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getTrandingMovies } from 'servises/api';
+import { getTrandingMovies, getURL } from 'servises/api';
 import { toast } from 'react-toastify';
 import Loader from 'components/Loader/Loader';
 
 import './Home.styles.css';
 
 const Home = () => {
-  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const baseURL = 'https://image.tmdb.org/t/p/w300';
+
   const location = useLocation();
   useEffect(() => {
     async function fetchMovies() {
@@ -26,11 +26,11 @@ const Home = () => {
   }, []);
   return (
     <div className="container">
-      <h2 className="title">Trending movie</h2>
+      <h2 className="title">Trending movies</h2>
       {isLoading && <Loader />}
-      <div className="list">
-        {trendingMovies.length > 0 &&
-          trendingMovies.map(({ id, title, poster_path }) => {
+      {trendingMovies && (
+        <div className="list">
+          {trendingMovies.map(({ id, title, poster_path }) => {
             return (
               <Link
                 className="link"
@@ -38,16 +38,13 @@ const Home = () => {
                 key={id}
                 state={{ from: location }}
               >
-                <img
-                  className="img"
-                  src={`${baseURL}${poster_path}`}
-                  alt={title}
-                />
+                <img className="img" src={getURL(poster_path)} alt={title} />
                 <h2 className="text">{title}</h2>
               </Link>
             );
           })}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

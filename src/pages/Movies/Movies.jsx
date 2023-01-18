@@ -13,7 +13,7 @@ const Movies = () => {
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const movieName = searchParams.get('name') ?? '';
+  const movieName = searchParams.get('name') ?? '/';
   useEffect(() => {
     if (movieName === '') {
       return;

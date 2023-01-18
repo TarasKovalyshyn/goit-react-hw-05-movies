@@ -1,5 +1,6 @@
+import Poster from 'components/Poster/Poster_not_available.jpg';
 import axios from 'axios';
-
+const baseImageURL = 'https://image.tmdb.org/t/p/w300';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 axios.defaults.params = {
   api_key: '3028ceedca42b9e0e0ce8d1046bb16a1',
@@ -30,6 +31,7 @@ export const getMovieCast = async id => {
 };
 export const getMovieReviews = async id => {
   const response = await axios.get(`/movie/${id}/reviews`);
-  console.log(response.data.results);
+  // console.log(response.data.results);
   return response.data.results;
 };
+export const getURL = url => (url ? `${baseImageURL}${url}` : Poster);

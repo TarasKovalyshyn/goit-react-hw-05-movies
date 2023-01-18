@@ -6,18 +6,11 @@ const SharedLayout = () => {
   return (
     <div style={{ paddingLeft: '15px', paddingTop: '15px' }}>
       <div>
-        
         <NavLink to="/" end>
-          <button type="button" className="button">
-            Home
-          </button>
+          Home
         </NavLink>
 
-        <NavLink to="/movies">
-          <button type="button" className="button">
-            Movies
-          </button>
-        </NavLink>
+        <NavLink to="/movies">Movies</NavLink>
       </div>
       <Suspense>
         <Outlet />

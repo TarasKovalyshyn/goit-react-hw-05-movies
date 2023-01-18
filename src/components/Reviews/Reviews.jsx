@@ -26,7 +26,7 @@ const Reviews = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {reviews.length !== 0 ? (
+      {!reviews ? (
         <div>
           {reviews.map(({ author, content, id }) => (
             <div key={id} style={{ paddingRight: '30px' }}>

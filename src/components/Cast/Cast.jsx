@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieCast } from 'servises/api';
+import { getMovieCast, getURL } from 'servises/api';
 import { toast } from 'react-toastify';
 import Loader from 'components/Loader/Loader';
 
 const Casts = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [cast, setCast] = useState([]);
+  const [cast, setCast] = useState(null);
   const { movieId } = useParams();
-  const baseURL = 'https://image.tmdb.org/t/p/w300';
+
   useEffect(() => {
     async function fetchCredits() {
       try {
@@ -22,7 +22,7 @@ const Casts = () => {
     }
     fetchCredits();
   }, [movieId]);
-  // console.log(movieId)
+
   return (
     <>
       {isLoading && <Loader />}
@@ -34,21 +34,21 @@ const Casts = () => {
           marginTop: '15px',
         }}
       >
-        {cast.map(({ original_name, id, profile_path, character }) => (
-          <div
-            key={id}
-            style={{ listStyle: 'none', margin: '0 auto', maxWidth: '150px' }}
-          >
-            <img
-              src={`${baseURL}${profile_path}`}
-              alt="poster"
-              width={'150px'}
-            />
+        {cast ? (
+          cast.map(({ original_name, id, profile_path, character }) => (
+            <div
+              key={id}
+              style={{ listStyle: 'none', margin: '0 auto', maxWidth: '150px' }}
+            >
+              <img src={getURL(profile_path)} alt="poster" width={'150px'} />
 
-            <p className="text">{original_name}</p>
-            <p>Character:{character}</p>
-          </div>
-        ))}
+              <p className="text">{original_name}</p>
+              <p>Character:{character}</p>
+            </div>
+          ))
+        ) : (
+          <p>We don`t have any casts here</p>
+        )}
       </div>
     </>
   );

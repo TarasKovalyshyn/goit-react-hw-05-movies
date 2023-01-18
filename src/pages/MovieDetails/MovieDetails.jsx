@@ -12,7 +12,9 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
   const location = useLocation();
+
   const backLinkHref = location.state?.from ?? '/movies';
+
   useEffect(() => {
     async function fetchDetails() {
       try {
@@ -40,12 +42,14 @@ const MovieDetails = () => {
         {isLoading && <Loader />}
         <MovieCard info={movieDetails} />
 
-        <Link to="cast">
-          <button className="button">Cast</button>
+        <Link to="cast" state={{ from: backLinkHref }}>
+          {' '}
+          Cast{' '}
         </Link>
 
-        <Link to="reviews">
-          <button className="button">Reviews</button>
+        <Link to="reviews" state={{ from: backLinkHref }}>
+          {' '}
+          Reviews{' '}
         </Link>
         <Outlet />
       </>
